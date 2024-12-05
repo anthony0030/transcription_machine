@@ -8,6 +8,10 @@ class BunnyClient
     @library_id, @access_key = library_id, access_key
   end
 
+  def videos(page: 1, per_page: 1000)
+    get("/videos?itemsPerPage=#{per_page}&page=#{page}")
+  end
+
   def get(path)
     http_request Net::HTTP::Get, "/library/#{@library_id}#{path}"
   end
